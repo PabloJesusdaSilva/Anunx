@@ -33,9 +33,17 @@ const Publish = () => {
           </select>
         </div>
 
-        <div className='w-6/12 mt-10 bg-white px-4 py-6 rounded-md shadow-lg'>
+        <div className='w-6/12 h-auto mt-10 bg-white px-4 py-6 rounded-md shadow-lg'>
           <h6 className='mb-3 text-lg'>Imagens</h6>
           <p className='text-sm text-gray-600'>A primeira imagem é a foto principal do seu anúncio</p>
+
+          <div className='flex'>
+            <div className='w-40 h-2/6 mt-3 py-8 px-4 border-dashed border-2 border-zinc-950 text-center text-xs bg-zinc-300 cursor-pointer'>
+              <p>Clique para adicionar ou arraste a imagem para aqui.</p>
+            </div>
+            <div className='w-40 h-2/6'>
+            </div>
+          </div>
         </div>
 
         <div className='w-6/12 mt-10 px-4 py-6 rounded-md shadow-lg bg-white '>
