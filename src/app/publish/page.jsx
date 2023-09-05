@@ -1,3 +1,9 @@
+import Image from 'next/image';
+
+import { TrashIcon } from '@heroicons/react/24/outline'
+
+import Bike from '../../../public/bike.jpg';
+
 const Publish = () => {
   return (
       <main className='flex flex-col items-center w-full mt-12 mb-10'>
@@ -37,16 +43,20 @@ const Publish = () => {
           <h6 className='mb-3 text-lg'>Imagens</h6>
           <p className='text-sm text-gray-600'>A primeira imagem é a foto principal do seu anúncio</p>
 
-          <div className='flex'>
-            <div className='w-40 h-2/6 mt-3 py-8 px-4 border-dashed border-2 border-zinc-950 text-center text-xs bg-zinc-300 cursor-pointer'>
+          <div className='flex items-center gap-4 mt-4'>
+            <div className='w-40 h-2/6 py-7 px-4 rounded-sm border-dashed border-2 border-zinc-950 text-center text-xs bg-zinc-300 cursor-pointer'>
               <p>Clique para adicionar ou arraste a imagem para aqui.</p>
             </div>
-            <div className='w-40 h-2/6'>
+            <div className='group w-40 h-2/6 relative'>
+              <Image className=' rounded-sm' width={200} height={200} src={Bike} alt='foto ilustrativa de uma bicicleta' />
+              <div className='hidden justify-center items-center absolute top-0 w-full h-full opacity-80 bg-zinc-950 group-hover:flex'>
+                <TrashIcon className='absolute z-40 w-8 text-zinc-50 transition-all' />
+              </div>
             </div>
           </div>
         </div>
 
-        <div className='w-6/12 mt-10 px-4 py-6 rounded-md shadow-lg bg-white '>
+        <div className='w-6/12 mt-10 px-4 py-6 rounded-md shadow-lg bg-white'>
           <h6 className='mb-3 text-lg'>Descrição</h6>
           <textarea className='w-full border-2 border-gray-200 rounded resize-none' name='description' rows='6'></textarea>
         </div>
@@ -62,7 +72,7 @@ const Publish = () => {
           <button className='py-2 px-5 rounded-md uppercase bg-zinc-950 text-white'>Publicar anúncio</button>
         </div>
       </main>
-  );
+  )
 }
 
 export default Publish;
