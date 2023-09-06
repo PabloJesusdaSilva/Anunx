@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image';
 
 import { TrashIcon } from '@heroicons/react/24/outline'
@@ -47,10 +49,11 @@ const Publish = () => {
             <div className='w-40 h-2/6 py-7 px-4 rounded-sm border-dashed border-2 border-zinc-950 text-center text-xs bg-zinc-300 cursor-pointer'>
               <p>Clique para adicionar ou arraste a imagem para aqui.</p>
             </div>
+
             <div className='group w-40 h-2/6 relative'>
               <Image className=' rounded-sm' width={200} height={200} src={Bike} alt='foto ilustrativa de uma bicicleta' />
               <div className='hidden justify-center items-center absolute top-0 w-full h-full opacity-80 bg-zinc-950 group-hover:flex'>
-                <TrashIcon className='absolute z-40 w-8 text-zinc-50 transition-all' />
+                <TrashIcon className='absolute z-40 w-8 text-zinc-50 transition-all cursor-pointer' />
               </div>
             </div>
           </div>
