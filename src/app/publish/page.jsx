@@ -1,81 +1,64 @@
-'use client'
-
-import Image from 'next/image';
-
-import { TrashIcon } from '@heroicons/react/24/outline'
-
-import Bike from '../../../public/bike.jpg';
-
 const Publish = () => {
-  return (
-      <main className='flex flex-col items-center w-full mt-12 mb-10'>
-        <h2 className='text-5xl'>
-          Publicar Anúncio
-        </h2>
-        <h5 className='mt-2 text-lg'>
-          Quanto mais detalhado, melhor!
-        </h5>
+   return(
+      <main className='flex flex-col items-center w-full my-14'>
+         <h1 className= 'mb-2 text-5xl'>Publicar Anúncio</h1>
+         <p className='text-lg'>Quanto mais detalhes, melhor</p>
 
-        <div className='w-6/12 mt-10 bg-white px-4 py-6 rounded-md shadow-lg'>
-          <h6 className='mb-1 text-lg'>Título do Anúncio</h6>
-          <input className='w-full p-1 border-b-2 border-gray-200' type='text' placeholder='Ex.: Bike aro 18 com garantia' />
+         <article className='w-3/5 p-4 mt-12 rounded-md shadow-md bg-white'>
+            <label className='my-2 text-lg font-medium'>Título do anúncio</label>
+            <input className='w-full mt-2 mb-4 pb-1 border-b-2 border-b-zinc-300' 
+               type='text' placeholder='ex: Bicicleta Aro 18 com garantia' />
+            
+            <label className='text-lg font-medium'>Categoria</label>
+            <select className='w-full mt-2 mb-1 pb-1 border-b-2 border-zinc-300 ' 
+               name='category' id='category' >
+               <option value=''>Selecione</option>
+               <option value=''>Bebê e Criança</option>
+               <option value=''>Agricultura</option>
+               <option value=''>Moda</option>
+               <option value=''>Carros, Motos e Barcos</option>
+               <option value=''>Serviços</option>
+               <option value=''>Lazer</option>
+               <option value=''>Animais</option>
+               <option value=''>Moveis, Casa, e Jardim</option>
+               <option value=''>Imóveis</option>
+               <option value=''>Equipamentos e Ferramentas</option>
+               <option value=''>Celulares e Tablets</option>
+               <option value=''>Esportes</option>
+               <option value=''>Tecnologia</option>
+               <option value=''>Emprego</option>
+               <option value=''>Outros</option>
+            </select>
+         </article>
 
-          <h6 className='mt-6 mb-1 text-lg'>Categoria</h6>
-          <select className='w-full py-2 text-gray-400 border-b-2 border-gray-200' name='category'>
-            <option value='0'>Selecione</option>
-            <option value='1'>Bebê e Criança</option>
-            <option value='2'>Agricultura</option>
-            <option value='3'>Moda</option>
-            <option value='4'>Carros, Motos e Barcos</option>
-            <option value='5'>Serviços</option>
-            <option value='6'>Lazer</option>
-            <option value='7'>Animais</option>
-            <option value='7'>Moveis, Casas, Jardim</option>
-            <option value='7'>Imóveis</option>
-            <option value='7'>Equipamentos e Ferramentas</option>
-            <option value='7'>Celulares e Tablets</option>
-            <option value='7'>Esportes</option>
-            <option value='7'>Tecnologia</option>
-            <option value='7'>Emprego</option>
-            <option value='7'>Outros</option>
-          </select>
-        </div>
+         <article className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
+            <label className='text-lg font-medium'>Imagens</label>
+            <p className='tracking-wide'>A primeira imagem é a foto principal do seu anúncio</p>
+         </article>
+         
+         <article className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
+            <label className='text-xl font-medium'>Descrição</label>
+            <p className='tracking-wide'>Escreva os detalhes do que está vendendo</p>
 
-        <div className='w-6/12 h-auto mt-10 bg-white px-4 py-6 rounded-md shadow-lg'>
-          <h6 className='mb-3 text-lg'>Imagens</h6>
-          <p className='text-sm text-gray-600'>A primeira imagem é a foto principal do seu anúncio</p>
+            <textarea className='w-full h-full mt-3 pt-1 pl-2 border-2 border-zinc-300 rounded resize-none'
+               name='description' cols='30' rows='10' />
+         </article>
 
-          <div className='flex items-center gap-4 mt-4'>
-            <div className='w-40 h-2/6 py-7 px-4 rounded-sm border-dashed border-2 border-zinc-950 text-center text-xs bg-zinc-300 cursor-pointer'>
-              <p>Clique para adicionar ou arraste a imagem para aqui.</p>
-            </div>
+         <article className='w-3/5 gap-2 p-4 mt-8 rounded-md shadow-md bg-white'>
+            <label className='text-xl font-medium'>Dados de contato</label>
+            <form>
+               <input className='w-full h-10 mt-3 pl-2 border-2 border-zinc-300 rounded' 
+                  type='text' placeholder='Nome' />
+               <input className='w-full h-10 my-4 pl-2 border-2 border-zinc-300 rounded' 
+                  type='email' placeholder='Email' />
+               <input className='w-full h-10 pl-2 border-2 border-zinc-300 rounded' 
+                  type='tel' placeholder='Telefone' />
+            </form>
+         </article>
 
-            <div className='group w-40 h-2/6 relative'>
-              <Image className=' rounded-sm' width={200} height={200} src={Bike} alt='foto ilustrativa de uma bicicleta' />
-              <div className='hidden justify-center items-center absolute top-0 w-full h-full opacity-80 bg-zinc-950 group-hover:flex'>
-                <TrashIcon className='absolute z-40 w-8 text-zinc-50 transition-all cursor-pointer' />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className='w-6/12 mt-10 px-4 py-6 rounded-md shadow-lg bg-white'>
-          <h6 className='mb-3 text-lg'>Descrição</h6>
-          <textarea className='w-full border-2 border-gray-200 rounded resize-none' name='description' rows='6'></textarea>
-        </div>
-
-        <div className='w-6/12 mt-10 px-4 py-6 rounded-md shadow-lg bg-white'>
-          <h6 className='mb-3 text-lg'>Dados de Contanto</h6>
-          <input className='w-full p-2 border-2 border-gray-200 rounded' type="email" placeholder="Email"/>
-          <input className='w-full my-3 p-2 border-2 border-gray-200 rounded' type="text" placeholder="Nome"/>
-          <input className='w-full p-2 border-2 border-gray-200 rounded' type="tel" placeholder="Telefone"/>
-        </div>
-
-        <div className='w-6/12 flex justify-end mt-6'>
-          <button className='py-2 px-5 rounded-md uppercase bg-zinc-950 text-white'>Publicar anúncio</button>
-        </div>
-      </main>
-  )
+         <button className='relative left-80 mt-5 py-2 px-4 rounded-md bg-zinc-950 text-white'>Publicar anúncio</button>
+      </main>      
+   );
 }
 
 export default Publish;
