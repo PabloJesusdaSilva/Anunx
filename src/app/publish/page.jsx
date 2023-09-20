@@ -43,6 +43,14 @@ const Publish = () => {
             <textarea className='w-full h-full mt-3 pt-1 pl-2 border-2 border-zinc-300 rounded resize-none'
                name='description' cols='30' rows='10' />
          </article>
+         
+         <article className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
+            <label className='text-xl font-medium'>Preço</label>
+            <label className='relative top-6 -left-11 p-1 text-sm font-medium bg-white text-zinc-400'>Valor</label>
+            <input className='w-full h-12 mt-3 pl-9 border-2 border-zinc-300 rounded' 
+               type='tel' />
+            <span className='relative -top-9 left-3 text-zinc-400'>R$</span>
+         </article>
 
          <article className='w-3/5 gap-2 p-4 mt-8 rounded-md shadow-md bg-white'>
             <label className='text-xl font-medium'>Dados de contato</label>
@@ -56,7 +64,7 @@ const Publish = () => {
             </form>
          </article>
 
-         <button className='relative left-80 mt-5 py-2 px-4 rounded-md bg-zinc-950 text-white'>Publicar anúncio</button>
+         <button className='relative left-80 mt-6 py-2 px-4 rounded-md bg-zinc-950 text-white'>Publicar anúncio</button>
       </main>      
    );
 }
