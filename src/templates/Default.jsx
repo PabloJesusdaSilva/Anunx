@@ -1,12 +1,14 @@
 "use client"
 
-import Header from '../components/Header';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const Default = ({ children }) => {
   return(
     <>
       <Header />
         {children}
+      <Footer />
     </>
   );
 }
