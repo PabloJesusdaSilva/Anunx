@@ -1,6 +1,6 @@
 const Publish = () => {
    return(
-      <main className='flex flex-col items-center w-full my-14'>
+      <main className='flex flex-col items-center w-full'>
          <h1 className= 'mb-2 text-5xl'>Publicar Anúncio</h1>
          <p className='text-lg'>Quanto mais detalhes, melhor</p>
 

@@ -4,7 +4,7 @@ import localImage from '../../../public/bike.jpg';
 
 const Dashboard = () => {
    return(
-      <main className='flex flex-col items-center w-full mt-14'>
+      <main className='flex flex-col items-center w-full'>
         <h1 className='text-5xl'>Meus Anúncios</h1>
 
         <button className='mt-8 py-2 px-5 rounded-md uppercase text-white bg-zinc-950'>

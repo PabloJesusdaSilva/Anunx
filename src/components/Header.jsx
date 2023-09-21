@@ -17,7 +17,7 @@ const Header = () => {
         <ul className='grid grid-cols-2 items-center gap-x-96'>
           <li className='text-lg text-white'>Anunx</li>
 
-          <li className='flex items-center'>
+          <li className='flex items-center cursor-pointer'>
             <Link href='../publish' passHref className='mr-6'>
               <button className='py-1 px-4 bg-zinc-900 border-2 rounded-md border-zinc-700 text-white'>
                 Anunciar e Vender
