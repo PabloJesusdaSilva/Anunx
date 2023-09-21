@@ -6,7 +6,7 @@ const Publish = () => {
 
          <article className='w-3/5 p-4 mt-12 rounded-md shadow-md bg-white'>
             <label className='my-2 text-lg font-medium'>Título do anúncio</label>
-            <input className='w-full mt-2 mb-4 pb-1 border-b-2 border-b-zinc-300' 
+            <input className='w-full mt-2 mb-4 pl-1 py-1 border-b-2 border-b-zinc-300' 
                type='text' placeholder='ex: Bicicleta Aro 18 com garantia' />
             
             <label className='text-lg font-medium'>Categoria</label>

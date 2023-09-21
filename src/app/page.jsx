@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
+import Card from '@/components/Card';
 import localImage from '../../public/bike.jpg';
 
 const Home = () => {
@@ -20,30 +20,21 @@ const Home = () => {
         <h2 className='text-3xl'>Destaques</h2>
 
         <div className='grid sm:grid-cols-1 gap-y-8 md:grid-cols-3 gap-x-6 mt-6 tracking-wide'>
-          <article>
-              <Image className='rounded-t-md' width={200} height={100} src={localImage} alt='foto do produto à venda' />
-
-              <div className='grid grid-cols-2 p-3 shadow-xl bg-white rounded-b-md'>
-                <h4 className='col-span-2 text-lg font-bold '>Produto x</h4>
-                <span className='col-span-2 text-sm '>R$60,00</span>
-              </div>
-          </article>
-          <article>
-            <Image className='rounded-t-md' width={200} height={100} src={localImage} alt='foto do produto à venda' />
-
-            <div className='grid grid-cols-2 p-3 shadow-xl bg-white rounded-b-md'>
-              <h4 className='col-span-2 text-lg font-bold '>Produto x</h4>
-              <span className='col-span-2 text-sm '>R$60,00</span>
-            </div>
-          </article>
-          <article>
-            <Image className='rounded-t-md' width={200} height={100} src={localImage} alt='foto do produto à venda' />
-
-            <div className='grid grid-cols-2 p-3 shadow-xl bg-white rounded-b-md'>
-              <h4 className='col-span-2 text-lg font-bold '>Produto x</h4>
-              <span className='col-span-2 text-sm '>R$60,00</span>
-            </div>
-          </article>
+          <Card 
+            image={localImage}
+            title='Produto x'
+            subtitle='R$ 60,00'
+          />
+          <Card 
+            image={localImage}
+            title='Produto x'
+            subtitle='R$ 60,00'
+          />
+          <Card 
+            image={localImage}
+            title='Produto x'
+            subtitle='R$ 60,00'
+          />
         </div>
       </section>
    </main>
