@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
 import localImage from '../../../public/jaguar.jpg';
 
@@ -25,12 +24,10 @@ const Product = () => {
             <article className='w-4/6'>
                <div className='p-4 rounded-md shadow-md bg-white'>
                   <Swiper
-                     cssMode={true}
                      navigation={true}
                      pagination={true}
                      mousewheel={true}
                      keyboard={true}
-                     modules={[Navigation, Pagination, Mousewheel, Keyboard]}
                   >
                      {
                         data.map(item => (
@@ -51,7 +48,7 @@ const Product = () => {
                <div className='flex flex-col w-full my-6 p-4 rounded-md shadow-md bg-white'>
                   <span className='text-sm text-zinc-600'>Publicado 22 de setembro de 2023</span>
                   <h2 className='mt-4 mb-3 text-3xl'>Jaguar XE 2.0 D R-Sport Aut.</h2>
-                  <span className='text-2xl font-bold'>R$ 50.000,00</span>
+                  <span className='text-2xl font-bold'>R$ 598.000,00</span>
                   <span className='w-20 mt-4 p-2 text-xs text-center rounded-full bg-zinc-300'>Categoria</span>
                </div>
 
