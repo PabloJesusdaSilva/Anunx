@@ -1,27 +1,51 @@
-import Image from 'next/image';
-import { ChevronLeftIcon, ChevronRightIcon} from '@heroicons/react/24/outline';
+"use client"
 
-import localImage from '../../../public/bike.jpg';
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+
+import localImage from '../../../public/jaguar.jpg';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 const Product = () => {
+   const data = [
+      {id: '1', image: localImage},
+      {id: '2', image: localImage},
+      {id: '3', image: localImage},
+      {id: '4', image: localImage},
+   ];
+
    return(
       <main className='flex justify-center w-full'>
          <section className='flex w-4/6'>
             <article className='w-4/6'>
-               <div className='relative w-full p-4 pb-10 rounded-md shadow-md bg-white'>
-                  <span className='flex justify-center items-center absolute z-10 top-44 left-6 w-10 h-10 opacity-50 rounded-full bg-zinc-500'>
-                     <ChevronLeftIcon className='relative z-20 text-white w-5' />
-                  </span>
-                  <Image 
-                     src={localImage} 
-                     alt='foto do produto' 
-                     width={100} 
-                     height={100} 
-                     className='w-full h-full rounded'
-                  />
-                  <span className='flex justify-center items-center absolute z-10 top-44 right-6 w-10 h-10 opacity-50 rounded-full bg-zinc-500'>
-                     <ChevronRightIcon className='relative z-20 text-white w-5' />
-                  </span>
+               <div className='p-4 rounded-md shadow-md bg-white'>
+                  <Swiper
+                     cssMode={true}
+                     navigation={true}
+                     pagination={true}
+                     mousewheel={true}
+                     keyboard={true}
+                     modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+                  >
+                     {
+                        data.map(item => (
+                           <SwiperSlide key={item.id}>
+                              <Image 
+                                 src={item.image} 
+                                 alt='foto do produto' 
+                                 width={200} 
+                                 height={200} 
+                                 className='w-full h-full rounded bg-cover'
+                              />
+                           </SwiperSlide>
+                        ))
+                     }
+                  </Swiper>
                </div>
 
                <div className='flex flex-col w-full my-6 p-4 rounded-md shadow-md bg-white'>
