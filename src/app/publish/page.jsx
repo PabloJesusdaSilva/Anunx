@@ -1,7 +1,11 @@
-"use client"
+'use client'
 
+import Image from 'next/image';
 import { Formik } from  'formik';
 import * as yup from 'yup';
+import { TrashIcon } from '@heroicons/react/24/outline';
+
+import ImageIlustrator from '../../../public/bike.jpg'
 
 const validationSchema = yup.object().shape({
    title: yup.string()
@@ -37,7 +41,7 @@ const Publish = () => {
                         <h1 className= 'mb-2 text-5xl'>Publicar Anúncio</h1>
                         <p className='text-lg'>Quanto mais detalhes, melhor</p>
                
-                        <article className='w-3/5 p-4 mt-12 rounded-md shadow-md bg-white'>
+                        <div className='w-3/5 p-4 mt-12 rounded-md shadow-md bg-white'>
                            <label className='my-2 text-lg font-medium'>Título do anúncio</label>
                            <input
                               name='title'
@@ -68,30 +72,53 @@ const Publish = () => {
                               <option value=''>Emprego</option>
                               <option value=''>Outros</option>
                            </select>
-                        </article>
+                        </div>
                
-                        <article className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
+                        <div className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
                            <label className='text-lg font-medium'>Imagens</label>
                            <p className='tracking-wide'>A primeira imagem é a foto principal do seu anúncio</p>
-                        </article>
+
+                           <div className='flex mt-4'>
+                              <article className='flex justify-center items-center text-center w-60 h-36 mb-4 mr-4 p-3 border-2 border-dashed border-zinc-700 bg-zinc-300'>
+                                 <span>
+                                    Clique para adicionar ou arraste a imagem aqui.
+                                 </span>
+                              </article>
+
+                              <article className='relative'>
+                                 <Image 
+                                    alt=''
+                                    src={ImageIlustrator}
+                                    width={200}
+                                    height={150}
+                                    className='object-cover w-60 h-36'
+                                 />
+
+                                 <div className='absolute top-0'>
+                                    <TrashIcon className='w-8' />
+                                 </div>
+                              </article>
+                           </div>
+
+                        </div>
                         
-                        <article className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
+                        <div className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
                            <label className='text-xl font-medium'>Descrição</label>
                            <p className='tracking-wide'>Escreva os detalhes do que está vendendo</p>
                
                            <textarea className='w-full h-full mt-3 pt-1 pl-2 border-2 border-zinc-300 rounded resize-none'
                               name='description' cols='30' rows='10' />
-                        </article>
+                        </div>
                         
-                        <article className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
+                        <div className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
                            <label className='text-xl font-medium'>Preço</label>
                            <label className='relative top-6 -left-11 p-1 text-sm font-medium bg-white text-zinc-400'>Valor</label>
                            <input className='w-full h-12 mt-3 pl-9 border-2 border-zinc-300 rounded' 
                               type='tel' />
                            <span className='relative -top-9 left-3 text-zinc-400'>R$</span>
-                        </article>
+                        </div>
                
-                        <article className='w-3/5 gap-2 p-4 mt-8 rounded-md shadow-md bg-white'>
+                        <div className='w-3/5 gap-2 p-4 mt-8 rounded-md shadow-md bg-white'>
                            <label className='text-xl font-medium'>Dados de contato</label>
                            <form>
                               <input className='w-full h-10 mt-3 pl-2 border-2 border-zinc-300 rounded' 
@@ -101,7 +128,7 @@ const Publish = () => {
                               <input className='w-full h-10 pl-2 border-2 border-zinc-300 rounded' 
                                  type='tel' placeholder='Telefone' />
                            </form>
-                        </article>
+                        </div>
                
                         <button
                            type='submit' 
