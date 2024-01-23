@@ -96,10 +96,10 @@ const Publish = () => {
                            <label className='text-lg font-medium'>Imagens</label>
                            <p className='tracking-wide'>A primeira imagem é a foto principal do seu anúncio</p>
 
-                           <div className='flex mt-4'>
+                           <div className='flex flex-wrap mt-4'>
                               <article 
                                  {...getRootProps()}
-                                 className='flex justify-center items-center text-center w-60 h-36 mb-4 mr-4 p-3 border-2 border-dashed border-zinc-700 bg-zinc-300'
+                                 className='flex justify-center items-center text-center w-60 h-36 m-2 p-3 border-2 border-dashed border-zinc-700 bg-zinc-300'
                               >
                                  <input {...getInputProps()} />
                                  <h2>
@@ -108,10 +108,10 @@ const Publish = () => {
                               </article>
 
                               {
-                                 files.map(file => (
+                                 files.map((file, index) => (
                                     <article
                                        key={file.name} 
-                                       className='relative w-60 h-36 mr-4 group'
+                                       className='relative w-60 h-36 m-2 group'
                                     >
                                        <Image 
                                           alt=''
@@ -129,11 +129,15 @@ const Publish = () => {
 
                                        </div>
                                        
-                                       <div className='absolute bottom-0 left-0 py-1 px-2 bg-purple-800 opacity-100 rounded-tr-lg'>
-                                          <h2 className='text-zinc-200 tracking-wider'>
-                                             Principal
-                                          </h2>
-                                       </div>
+                                       {
+                                          index === 0 ?
+                                             <div className='absolute bottom-0 left-0 py-1 px-2 bg-purple-800 opacity-100 rounded-tr-lg'>
+                                                <h2 className='text-zinc-200 tracking-wider'>
+                                                   Principal
+                                                </h2>
+                                             </div>
+                                          : null
+                                       }
                                     </article>
                                  ))
                               }
