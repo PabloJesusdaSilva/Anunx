@@ -85,21 +85,30 @@ const Publish = () => {
                                  </span>
                               </article>
 
-                              <article className='relative'>
+                              <article className='relative w-60 h-36 group'>
                                  <Image 
                                     alt=''
                                     src={ImageIlustrator}
                                     width={200}
                                     height={150}
-                                    className='object-cover w-60 h-36'
+                                    className='object-cover w-full h-full'
                                  />
 
-                                 <div className='absolute top-0'>
-                                    <TrashIcon className='w-8' />
+                                 <div className='absolute flex justify-center items-center top-0 w-full h-full bg-zinc-950/50 transition-all opacity-0 group-hover:opacity-100'>
+                                    <TrashIcon 
+                                       color='#FFF' 
+                                       className='w-10' 
+                                    />
+
+                                 </div>
+                                 
+                                 <div className='absolute bottom-0 left-0 py-1 px-2 bg-purple-800 opacity-100 rounded-tr-lg'>
+                                    <h2 className='text-zinc-200 tracking-wider'>
+                                       Principal
+                                    </h2>
                                  </div>
                               </article>
                            </div>
-
                         </div>
                         
                         <div className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
