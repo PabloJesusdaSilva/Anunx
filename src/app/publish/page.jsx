@@ -2,10 +2,13 @@
 
 import Image from 'next/image';
 import { Formik } from  'formik';
+import { useDropzone } from 'react-dropzone';
 import * as yup from 'yup';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
+
 import ImageIlustrator from '../../../public/bike.jpg'
+import { useCallback, useState } from 'react';
 
 const validationSchema = yup.object().shape({
    title: yup.string()
@@ -15,6 +18,21 @@ const validationSchema = yup.object().shape({
 })
 
 const Publish = () => {
+   const [files, setFiles] = useState([]);
+
+   const { getRootProps, getInputProps } = useDropzone({
+      accept: 'image/*',
+      onDrop: (acceptedFile) => {
+         const newFiles = acceptedFile.map(file => {
+            return Object.assign(file, {
+               preview: URL.createObjectURL(file)
+            })
+         })
+
+         setFiles(newFiles);
+      }
+   });
+
    return(
       <Formik 
          initialValues={{
@@ -79,35 +97,46 @@ const Publish = () => {
                            <p className='tracking-wide'>A primeira imagem é a foto principal do seu anúncio</p>
 
                            <div className='flex mt-4'>
-                              <article className='flex justify-center items-center text-center w-60 h-36 mb-4 mr-4 p-3 border-2 border-dashed border-zinc-700 bg-zinc-300'>
-                                 <span>
+                              <article 
+                                 {...getRootProps()}
+                                 className='flex justify-center items-center text-center w-60 h-36 mb-4 mr-4 p-3 border-2 border-dashed border-zinc-700 bg-zinc-300'
+                              >
+                                 <input {...getInputProps()} />
+                                 <h2>
                                     Clique para adicionar ou arraste a imagem aqui.
-                                 </span>
+                                 </h2>
                               </article>
 
-                              <article className='relative w-60 h-36 group'>
-                                 <Image 
-                                    alt=''
-                                    src={ImageIlustrator}
-                                    width={200}
-                                    height={150}
-                                    className='object-cover w-full h-full'
-                                 />
+                              {
+                                 files.map(file => (
+                                    <article
+                                       key={file.name} 
+                                       className='relative w-60 h-36 mr-4 group'
+                                    >
+                                       <Image 
+                                          alt=''
+                                          src={file.preview}
+                                          width={200}
+                                          height={150}
+                                          className='object-cover w-full h-full'
+                                       />
 
-                                 <div className='absolute flex justify-center items-center top-0 w-full h-full bg-zinc-950/50 transition-all opacity-0 group-hover:opacity-100'>
-                                    <TrashIcon 
-                                       color='#FFF' 
-                                       className='w-10' 
-                                    />
+                                       <div className='absolute flex justify-center items-center top-0 w-full h-full bg-zinc-950/50 transition-all opacity-0 group-hover:opacity-100'>
+                                          <TrashIcon 
+                                             color='#FFF' 
+                                             className='w-10' 
+                                          />
 
-                                 </div>
-                                 
-                                 <div className='absolute bottom-0 left-0 py-1 px-2 bg-purple-800 opacity-100 rounded-tr-lg'>
-                                    <h2 className='text-zinc-200 tracking-wider'>
-                                       Principal
-                                    </h2>
-                                 </div>
-                              </article>
+                                       </div>
+                                       
+                                       <div className='absolute bottom-0 left-0 py-1 px-2 bg-purple-800 opacity-100 rounded-tr-lg'>
+                                          <h2 className='text-zinc-200 tracking-wider'>
+                                             Principal
+                                          </h2>
+                                       </div>
+                                    </article>
+                                 ))
+                              }
                            </div>
                         </div>
                         
