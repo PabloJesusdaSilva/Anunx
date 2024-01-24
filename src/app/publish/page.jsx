@@ -31,7 +31,13 @@ const Publish = () => {
 
          setFiles(newFiles);
       }
-   });
+   })
+
+   const handleRemoveFile = fileName => {
+      const newFileState = files.filter(file => file.name !== fileName);
+
+      setFiles(newFileState);
+   }
 
    return(
       <Formik 
@@ -121,12 +127,14 @@ const Publish = () => {
                                           className='object-cover w-full h-full'
                                        />
 
-                                       <div className='absolute flex justify-center items-center top-0 w-full h-full bg-zinc-950/50 transition-all opacity-0 group-hover:opacity-100'>
+                                       <div
+                                          onClick={() => handleRemoveFile(file.name)} 
+                                          className='absolute flex justify-center items-center top-0 w-full h-full bg-zinc-950/50 transition-all opacity-0 group-hover:opacity-100'
+                                       >
                                           <TrashIcon 
                                              color='#FFF' 
-                                             className='w-10' 
+                                             className='w-10 cursor-pointer' 
                                           />
-
                                        </div>
                                        
                                        {
@@ -152,11 +160,13 @@ const Publish = () => {
                               name='description' cols='30' rows='10' />
                         </div>
                         
-                        <div className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
+                        <div className='w-3/5 p-4 pb-1 mt-8 rounded-md shadow-md bg-white'>
                            <label className='text-xl font-medium'>Preço</label>
-                           <label className='relative top-6 -left-11 p-1 text-sm font-medium bg-white text-zinc-400'>Valor</label>
-                           <input className='w-full h-12 mt-3 pl-9 border-2 border-zinc-300 rounded' 
-                              type='tel' />
+                           <label className='relative top-7 -left-11 p-1 text-sm font-medium bg-white text-zinc-400'>Valor</label>
+                           <input 
+                              type='tel' 
+                              className='w-full h-12 mt-4 pl-9 border-2 border-zinc-300 rounded' 
+                           />
                            <span className='relative -top-9 left-3 text-zinc-400'>R$</span>
                         </div>
                
