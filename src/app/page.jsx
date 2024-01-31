@@ -6,7 +6,7 @@ import localImage from '../../public/bike.jpg';
 const Home = () => {
   return (
     <main className='flex flex-col items-center w-full'>
-      <h1 className='mb-6 text-5xl'>O que deseja encontrar?</h1>
+      <h1 className='mb-6 text-4xl'>O que deseja encontrar?</h1>
       <div className='sm: w-[330px] md:w-[600px] h-12'>
          <input 
             type='text'

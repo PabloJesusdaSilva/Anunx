@@ -1,20 +1,24 @@
 'use client'
 
 import Image from 'next/image';
+import { useState } from 'react';
 import { Formik } from  'formik';
 import { useDropzone } from 'react-dropzone';
 import * as yup from 'yup';
+
 import { TrashIcon } from '@heroicons/react/24/outline';
 
 
 import ImageIlustrator from '../../../public/bike.jpg'
-import { useCallback, useState } from 'react';
 
 const validationSchema = yup.object().shape({
    title: yup.string()
       .min(6, 'escreva um título maior')
       .max(100, 'título muito grande')
-      .required('Campo obrigatório')
+      .required('Campo obrigatório'),
+
+   category: yup.string()
+      .required('Required field!')
 })
 
 const Publish = () => {
@@ -42,7 +46,8 @@ const Publish = () => {
    return(
       <Formik 
          initialValues={{
-            title: ''
+            title: '',
+            category: ''
          }}
          validationSchema={validationSchema}
          onSubmit={values => {
@@ -77,24 +82,29 @@ const Publish = () => {
                            />
                            
                            <label className='text-lg font-medium'>Categoria</label>
-                           <select className='w-full mt-2 mb-1 pb-1 border-b-2 border-zinc-300 ' 
-                              name='category' id='category' >
-                              <option value=''>Selecione</option>
-                              <option value=''>Bebê e Criança</option>
-                              <option value=''>Agricultura</option>
-                              <option value=''>Moda</option>
-                              <option value=''>Carros, Motos e Barcos</option>
-                              <option value=''>Serviços</option>
-                              <option value=''>Lazer</option>
-                              <option value=''>Animais</option>
-                              <option value=''>Moveis, Casa, e Jardim</option>
-                              <option value=''>Imóveis</option>
-                              <option value=''>Equipamentos e Ferramentas</option>
-                              <option value=''>Celulares e Tablets</option>
-                              <option value=''>Esportes</option>
-                              <option value=''>Tecnologia</option>
-                              <option value=''>Emprego</option>
-                              <option value=''>Outros</option>
+                           <select 
+                              id='category' 
+                              name='category'
+                              value={values.category}
+                              onChange={handleChange} 
+                              className='w-full mt-2 mb-1 pb-1 border-b-2 border-zinc-300' 
+                           >
+                              <option value='Selecione'>Selecione</option>
+                              <option value='Bebê e Criança'>Bebê e Criança</option>
+                              <option value='Agricultura'>Agricultura</option>
+                              <option value='Moda'>Moda</option>
+                              <option value='Carros, Motos e Barcos'>Carros, Motos e Barcos</option>
+                              <option value='Serviços'>Serviços</option>
+                              <option value='Lazer'>Lazer</option>
+                              <option value='Animais'>Animais</option>
+                              <option value='Moveis, Casa, e Jardim'>Moveis, Casa, e Jardim</option>
+                              <option value='Imóveis'>Imóveis</option>
+                              <option value='Equipamentos e Ferramentas'>Equipamentos e Ferramentas</option>
+                              <option value='Celulares e Tablets'>Celulares e Tablets</option>
+                              <option value='Esportes'>Esportes</option>
+                              <option value='Tecnologia'>Tecnologia</option>
+                              <option value='Emprego'>Emprego</option>
+                              <option value='Outros'>Outros</option>
                            </select>
                         </div>
                
@@ -193,7 +203,6 @@ const Publish = () => {
                )
             }
          }
-
       </Formik>     
    );
 }
