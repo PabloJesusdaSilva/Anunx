@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Image from 'next/image';
 import { useState } from 'react';
@@ -8,9 +8,6 @@ import * as yup from 'yup';
 
 import { TrashIcon } from '@heroicons/react/24/outline';
 
-
-import ImageIlustrator from '../../../public/bike.jpg'
-
 const validationSchema = yup.object().shape({
    title: yup.string()
       .min(6, 'escreva um título maior')
@@ -18,7 +15,11 @@ const validationSchema = yup.object().shape({
       .required('Campo obrigatório'),
 
    category: yup.string()
-      .required('Required field!')
+      .required('Required field!'),
+      
+   description: yup.string()
+      .min(50, 'Write more than 50 characters')
+      .required('Required field!'),
 })
 
 const Publish = () => {
@@ -47,7 +48,8 @@ const Publish = () => {
       <Formik 
          initialValues={{
             title: '',
-            category: ''
+            category: '',
+            description: '',
          }}
          validationSchema={validationSchema}
          onSubmit={values => {
@@ -75,6 +77,7 @@ const Publish = () => {
                            <input
                               name='title'
                               value={values.title}
+                              error={errors.title}
                               onChange={handleChange} 
                               className='w-full mt-2 mb-4 pl-1 py-1 border-b-2 border-b-zinc-300' 
                               placeholder='ex: Bicicleta Aro 18 com garantia'
@@ -86,6 +89,7 @@ const Publish = () => {
                               id='category' 
                               name='category'
                               value={values.category}
+                              error={errors.category}
                               onChange={handleChange} 
                               className='w-full mt-2 mb-1 pb-1 border-b-2 border-zinc-300' 
                            >
@@ -166,8 +170,13 @@ const Publish = () => {
                            <label className='text-xl font-medium'>Descrição</label>
                            <p className='tracking-wide'>Escreva os detalhes do que está vendendo</p>
                
-                           <textarea className='w-full h-full mt-3 pt-1 pl-2 border-2 border-zinc-300 rounded resize-none'
-                              name='description' cols='30' rows='10' />
+                           <textarea 
+                              name='description'
+                              error={errors.description} 
+                              cols='30' 
+                              rows='10' 
+                              className='w-full h-full mt-3 pt-1 pl-2 border-2 border-zinc-300 rounded resize-none'
+                           />
                         </div>
                         
                         <div className='w-3/5 p-4 pb-1 mt-8 rounded-md shadow-md bg-white'>
