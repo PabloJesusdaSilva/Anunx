@@ -72,8 +72,10 @@ const Publish = () => {
                         <h1 className= 'mb-2 text-5xl'>Publicar Anúncio</h1>
                         <p className='text-lg'>Quanto mais detalhes, melhor</p>
                
-                        <div className='w-3/5 p-4 mt-12 rounded-md shadow-md bg-white'>
-                           <label className='my-2 text-lg font-medium'>Título do anúncio</label>
+                        <div className='w-3/5 p-4 mt-12 rounded-md shadow-md bg-white transition-all'>
+                           <label className={!errors.title ? 'my-2 text-lg font-medium' : 'text-red-500'}>
+                              Título do anúncio
+                           </label>
                            <input
                               name='title'
                               value={values.title}
@@ -83,6 +85,14 @@ const Publish = () => {
                               placeholder='ex: Bicicleta Aro 18 com garantia'
                               type='text' 
                            />
+
+                           {
+                              errors.title ? 
+                                 <>
+                                    <h1 className='text-red-500 mb-5'> Digite corretamente</h1>
+                                 </>
+                                 : ''
+                           }
                            
                            <label className='text-lg font-medium'>Categoria</label>
                            <select 
