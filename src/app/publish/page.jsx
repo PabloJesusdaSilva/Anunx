@@ -20,6 +20,19 @@ const validationSchema = yup.object().shape({
    description: yup.string()
       .min(50, 'Write more than 50 characters')
       .required('Required field!'),
+
+   price: yup.number()
+      .required('Required field!'),
+
+   email: yup.string()
+      .email('Email invalid!')
+      .required('Required field!'),
+
+   name: yup.string()
+      .required('Required field!'),
+
+   phone: yup.number()
+      .required('Required field!')
 })
 
 const Publish = () => {
@@ -50,6 +63,10 @@ const Publish = () => {
             title: '',
             category: '',
             description: '',
+            price: '',
+            email: '',
+            name: '',
+            phone: ''
          }}
          validationSchema={validationSchema}
          onSubmit={values => {
@@ -183,16 +200,29 @@ const Publish = () => {
                            <textarea 
                               name='description'
                               error={errors.description} 
+                              onChange={handleChange}
                               cols='30' 
                               rows='10' 
                               className='w-full h-full mt-3 pt-1 pl-2 border-2 border-zinc-300 rounded resize-none'
                            />
                         </div>
                         
-                        <div className='w-3/5 p-4 pb-1 mt-8 rounded-md shadow-md bg-white'>
-                           <label className='text-xl font-medium'>Preço</label>
+                        <div
+                           error={errors.price} 
+                           className='w-3/5 p-4 pb-1 mt-8 rounded-md shadow-md bg-white'
+                        >
+                           <label 
+                              name='price'
+                              className='text-xl font-medium'
+                           >
+                              Preço
+                           </label>
+
                            <label className='relative top-7 -left-11 p-1 text-sm font-medium bg-white text-zinc-400'>Valor</label>
                            <input 
+                              name='price'
+                              error={errors.price}
+                              onChange={handleChange}
                               type='tel' 
                               className='w-full h-12 mt-4 pl-9 border-2 border-zinc-300 rounded' 
                            />
@@ -202,12 +232,27 @@ const Publish = () => {
                         <div className='w-3/5 gap-2 p-4 mt-8 rounded-md shadow-md bg-white'>
                            <label className='text-xl font-medium'>Dados de contato</label>
                            <form>
-                              <input className='w-full h-10 mt-3 pl-2 border-2 border-zinc-300 rounded' 
-                                 type='text' placeholder='Nome' />
-                              <input className='w-full h-10 my-4 pl-2 border-2 border-zinc-300 rounded' 
-                                 type='email' placeholder='Email' />
-                              <input className='w-full h-10 pl-2 border-2 border-zinc-300 rounded' 
-                                 type='tel' placeholder='Telefone' />
+                              <input
+                                 name='name'
+                                 type='text' 
+                                 onChange={handleChange}
+                                 placeholder='Nome' 
+                                 className='w-full h-10 mt-3 pl-2 border-2 border-zinc-300 rounded' 
+                              />
+                              <input 
+                                 name='email'
+                                 type='email' 
+                                 onChange={handleChange}
+                                 placeholder='Email' 
+                                 className='w-full h-10 my-4 pl-2 border-2 border-zinc-300 rounded' 
+                              />
+                              <input
+                                 name='phone' 
+                                 type='tel' 
+                                 onChange={handleChange}
+                                 placeholder='Telefone' 
+                                 className='w-full h-10 pl-2 border-2 border-zinc-300 rounded' 
+                              />
                            </form>
                         </div>
                
