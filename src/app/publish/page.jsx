@@ -97,29 +97,30 @@ const Publish = () => {
                         <h1 className= 'mb-2 text-5xl'>Publicar Anúncio</h1>
                         <p className='text-lg'>Quanto mais detalhes, melhor</p>
                
-                        <div className='w-3/5 p-4 mt-12 rounded-md shadow-md bg-white transition-all'>
-                           <label className={!errors.title && touched.title ? 'my-2 text-lg font-medium' : 'text-red-500'}>
+                        <div className='flex flex-col w-3/5 p-4 mt-12 rounded-md shadow-md bg-white transition-all'>
+                           <label className={errors.title && touched.title ? 'text-lg font-medium text-red-500' : 'mt-2 text-lg font-medium'}>
                               Título do anúncio
                            </label>
+
+                           {
+                              errors.title && touched.title ? 
+                                 <>
+                                    <h1 className='text-red-500 text-sm ml-1'> Digite corretamente</h1>
+                                 </>
+                                 : null
+                           }
+
                            <input
                               name='title'
                               value={values.title}
                               error={errors.title}
                               onChange={handleChange} 
-                              className='w-full mt-2 mb-4 pl-1 py-1 border-b-2 border-b-zinc-300' 
+                              className={errors.title && touched.title ? 'w-full mt-2 pl-1 py-1 border-b-2 border-b-red-500' : 'pl-1 py-1 border-b-2 border-b-zinc-300'}
                               placeholder='ex: Bicicleta Aro 18 com garantia'
                               type='text' 
                            />
 
-                           {
-                              errors.title && touched.title ? 
-                                 <>
-                                    <h1 className='text-red-500 mb-5'> Digite corretamente</h1>
-                                 </>
-                                 : ''
-                           }
-                           
-                           <label className='text-lg font-medium'>Categoria</label>
+                           <label className='mt-4 text-lg font-medium'>Categoria</label>
                            <select 
                               id='category' 
                               name='category'
@@ -148,12 +149,14 @@ const Publish = () => {
                         </div>
                
                         <div className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
-                           <label className='text-lg font-medium'>Imagens</label>
-                           <p className='tracking-wide'>A primeira imagem é a foto principal do seu anúncio</p>
+                           <label className={errors.files && touched.files ? 'text-lg font-medium text-red-500' : 'text-lg font-medium text-zinc-900'}>Imagens</label>
+                           <p className={errors.files && touched.files ? 'tracking-wider text-red-500' : 'tracking-wider text-zinc-900'}>
+                              A primeira imagem é a foto principal do seu anúncio
+                           </p>
 
                            {
                               errors.files && touched.files
-                                 ? <h3 className='text-red-500 tracking-wider'> Envie pelo menus uma foto </h3>
+                                 ? <h3 className='text-red-500 tracking-wider mt-1 text-sm'> Envie pelo menos uma foto </h3>
                                  : null
                            }
 
@@ -208,8 +211,8 @@ const Publish = () => {
                         </div>
                         
                         <div className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
-                           <label className='text-xl font-medium'>Descrição</label>
-                           <p className='tracking-wide'>Escreva os detalhes do que está vendendo</p>
+                           <label className={errors.description && touched.description ? 'text-xl font-medium text-red-500' : 'text-xl font-medium'}>Descrição</label>
+                           <p className={errors.description && touched.description ? 'text-red-500' : 'tracking-wide'}>Escreva os detalhes do que está vendendo</p>
                
                            <textarea 
                               name='description'
@@ -227,7 +230,7 @@ const Publish = () => {
                         >
                            <label 
                               name='price'
-                              className='text-xl font-medium'
+                              className={errors.price && touched.price ? ' text-xl font-medium text-red-500' : 'text-xl font-medium text-zinc-800'}
                            >
                               Preço
                            </label>
