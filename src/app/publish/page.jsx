@@ -32,31 +32,14 @@ const validationSchema = yup.object().shape({
       .required('Required field!'),
 
    phone: yup.number()
+      .required('Required field!'),
+
+   files: yup.array()
+      .min(1, 'Send another image')
       .required('Required field!')
 })
 
 const Publish = () => {
-   const [files, setFiles] = useState([]);
-
-   const { getRootProps, getInputProps } = useDropzone({
-      accept: 'image/*',
-      onDrop: (acceptedFile) => {
-         const newFiles = acceptedFile.map(file => {
-            return Object.assign(file, {
-               preview: URL.createObjectURL(file)
-            })
-         })
-
-         setFiles(newFiles);
-      }
-   })
-
-   const handleRemoveFile = fileName => {
-      const newFileState = files.filter(file => file.name !== fileName);
-
-      setFiles(newFileState);
-   }
-
    return(
       <Formik 
          initialValues={{
@@ -66,20 +49,45 @@ const Publish = () => {
             price: '',
             email: '',
             name: '',
-            phone: ''
+            phone: '',
+            files: []
          }}
          validationSchema={validationSchema}
-         onSubmit={values => {
-            console.log(`OK, the form has been sent ${values}`);
+         onSubmit={(values) => {
+            console.log('OK, the form has been sent', values);
          }}
       >
          {
             ({
+               touched,
                values,
                errors,
                handleChange,
-               handleSubmit
+               handleSubmit,
+               setFieldValue
             }) => {
+               const { getRootProps, getInputProps } = useDropzone({
+                  accept: 'image/*',
+                  onDrop: (acceptedFile) => {
+                     const newFiles = acceptedFile.map(file => {
+                        return Object.assign(file, {
+                           preview: URL.createObjectURL(file)
+                        })
+                     })
+            
+                     setFieldValue('files', [
+                        ...values.files,
+                        ...newFiles
+                     ]);
+                  }
+               })
+            
+               const handleRemoveFile = fileName => {
+                  const newFileState = values.files.filter(file => file.name !== fileName);
+            
+                  setFieldValue('files', newFileState);
+               }
+
                return (
                   <>
                      <form
@@ -90,7 +98,7 @@ const Publish = () => {
                         <p className='text-lg'>Quanto mais detalhes, melhor</p>
                
                         <div className='w-3/5 p-4 mt-12 rounded-md shadow-md bg-white transition-all'>
-                           <label className={!errors.title ? 'my-2 text-lg font-medium' : 'text-red-500'}>
+                           <label className={!errors.title && touched.title ? 'my-2 text-lg font-medium' : 'text-red-500'}>
                               Título do anúncio
                            </label>
                            <input
@@ -104,7 +112,7 @@ const Publish = () => {
                            />
 
                            {
-                              errors.title ? 
+                              errors.title && touched.title ? 
                                  <>
                                     <h1 className='text-red-500 mb-5'> Digite corretamente</h1>
                                  </>
@@ -116,7 +124,7 @@ const Publish = () => {
                               id='category' 
                               name='category'
                               value={values.category}
-                              error={errors.category}
+                              error={errors.category && touched.category}
                               onChange={handleChange} 
                               className='w-full mt-2 mb-1 pb-1 border-b-2 border-zinc-300' 
                            >
@@ -143,19 +151,25 @@ const Publish = () => {
                            <label className='text-lg font-medium'>Imagens</label>
                            <p className='tracking-wide'>A primeira imagem é a foto principal do seu anúncio</p>
 
+                           {
+                              errors.files && touched.files
+                                 ? <h3 className='text-red-500 tracking-wider'> Envie pelo menus uma foto </h3>
+                                 : null
+                           }
+
                            <div className='flex flex-wrap mt-4'>
                               <article 
                                  {...getRootProps()}
-                                 className='flex justify-center items-center text-center w-60 h-36 m-2 p-3 border-2 border-dashed border-zinc-700 bg-zinc-300'
+                                 className='flex justify-center items-center text-center w-60 h-36 m-2 ml-0 p-3 border-2 border-dashed border-zinc-700 bg-zinc-300'
                               >
-                                 <input {...getInputProps()} />
+                                 <input name='files' {...getInputProps()} />
                                  <h2>
                                     Clique para adicionar ou arraste a imagem aqui.
                                  </h2>
                               </article>
 
                               {
-                                 files.map((file, index) => (
+                                 values.files.map((file, index) => (
                                     <article
                                        key={file.name} 
                                        className='relative w-60 h-36 m-2 group'
@@ -199,7 +213,7 @@ const Publish = () => {
                
                            <textarea 
                               name='description'
-                              error={errors.description} 
+                              error={errors.description && touched.description} 
                               onChange={handleChange}
                               cols='30' 
                               rows='10' 
@@ -208,7 +222,7 @@ const Publish = () => {
                         </div>
                         
                         <div
-                           error={errors.price} 
+                           error={errors.price && touched.price} 
                            className='w-3/5 p-4 pb-1 mt-8 rounded-md shadow-md bg-white'
                         >
                            <label 
@@ -221,7 +235,7 @@ const Publish = () => {
                            <label className='relative top-7 -left-11 p-1 text-sm font-medium bg-white text-zinc-400'>Valor</label>
                            <input 
                               name='price'
-                              error={errors.price}
+                              error={errors.price && touched.price}
                               onChange={handleChange}
                               type='tel' 
                               className='w-full h-12 mt-4 pl-9 border-2 border-zinc-300 rounded' 
@@ -235,6 +249,7 @@ const Publish = () => {
                               <input
                                  name='name'
                                  type='text' 
+                                 error={errors.name && touched.name}
                                  onChange={handleChange}
                                  placeholder='Nome' 
                                  className='w-full h-10 mt-3 pl-2 border-2 border-zinc-300 rounded' 
@@ -242,6 +257,7 @@ const Publish = () => {
                               <input 
                                  name='email'
                                  type='email' 
+                                 error={errors.email && touched.email}
                                  onChange={handleChange}
                                  placeholder='Email' 
                                  className='w-full h-10 my-4 pl-2 border-2 border-zinc-300 rounded' 
@@ -249,6 +265,7 @@ const Publish = () => {
                               <input
                                  name='phone' 
                                  type='tel' 
+                                 error={errors.phone && touched.phone}
                                  onChange={handleChange}
                                  placeholder='Telefone' 
                                  className='w-full h-10 pl-2 border-2 border-zinc-300 rounded' 
