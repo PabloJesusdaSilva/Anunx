@@ -120,14 +120,14 @@ const Publish = () => {
                               type='text' 
                            />
 
-                           <label className='mt-4 text-lg font-medium'>Categoria</label>
+                           <label className={errors.category ? 'mt-4 text-lg font-medium text-red-500' : 'mt-4 text-lg font-medium text-zinc-800'}>Categoria</label>
                            <select 
                               id='category' 
                               name='category'
                               value={values.category}
                               error={errors.category && touched.category}
                               onChange={handleChange} 
-                              className='w-full mt-2 mb-1 pb-1 border-b-2 border-zinc-300' 
+                              className={errors.category ? 'w-full mt-2 mb-1 pb-1 border-b-2 border-red-400 text-red-500' : 'w-full mt-2 mb-1 pb-1 border-b-2 border-zinc-300 text-zinc-300='} 
                            >
                               <option value='Selecione'>Selecione</option>
                               <option value='Bebê e Criança'>Bebê e Criança</option>
@@ -163,7 +163,7 @@ const Publish = () => {
                            <div className='flex flex-wrap mt-4'>
                               <article 
                                  {...getRootProps()}
-                                 className='flex justify-center items-center text-center w-60 h-36 m-2 ml-0 p-3 border-2 border-dashed border-zinc-700 bg-zinc-300'
+                                 className='flex justify-center items-center text-center w-60 h-36 m-2 ml-0 p-3 border-2 border-dashed border-zinc-300 bg-zinc-300'
                               >
                                  <input name='files' {...getInputProps()} />
                                  <h2>
@@ -220,7 +220,7 @@ const Publish = () => {
                               onChange={handleChange}
                               cols='30' 
                               rows='10' 
-                              className='w-full h-full mt-3 pt-1 pl-2 border-2 border-zinc-300 rounded resize-none'
+                              className={errors.description ? 'w-full h-full mt-3 pt-1 pl-2 border-2 border-red-400 rounded resize-none' : 'w-full h-full mt-3 pt-1 pl-2 border-2 border-zinc-300 rounded resize-none'}
                            />
                         </div>
                         
@@ -235,15 +235,15 @@ const Publish = () => {
                               Preço
                            </label>
 
-                           <label className='relative top-7 -left-11 p-1 text-sm font-medium bg-white text-zinc-400'>Valor</label>
+                           <label className={errors.price ? 'relative top-7 -left-11 p-1 text-sm font-medium bg-white text-red-400' : 'relative top-7 -left-11 p-1 text-sm font-medium bg-white text-zinc-400'}>Valor</label>
                            <input 
                               name='price'
                               error={errors.price && touched.price}
                               onChange={handleChange}
                               type='tel' 
-                              className='w-full h-12 mt-4 pl-9 border-2 border-zinc-300 rounded' 
+                              className={errors.price ? 'w-full h-12 mt-4 pl-9 border-2 border-red-400 rounded' : 'w-full h-12 mt-4 pl-9 border-2 border-zinc-300 rounded' }
                            />
-                           <span className='relative -top-9 left-3 text-zinc-400'>R$</span>
+                           <span className={errors.price ? 'relative -top-9 left-3 text-red-400' : 'relative -top-9 left-3 text-zinc-400'}>R$</span>
                         </div>
                
                         <div className='w-3/5 gap-2 p-4 mt-8 rounded-md shadow-md bg-white'>
@@ -255,7 +255,7 @@ const Publish = () => {
                                  error={errors.name && touched.name}
                                  onChange={handleChange}
                                  placeholder='Nome' 
-                                 className='w-full h-10 mt-3 pl-2 border-2 border-zinc-300 rounded' 
+                                 className={errors.name ? 'w-full h-10 mt-3 pl-2 border-2 border-red-400 rounded text-red-400' : 'w-full h-10 mt-3 pl-2 border-2 border-zinc-300 text-zinc-400 rounded'} 
                               />
                               <input 
                                  name='email'
@@ -263,7 +263,7 @@ const Publish = () => {
                                  error={errors.email && touched.email}
                                  onChange={handleChange}
                                  placeholder='Email' 
-                                 className='w-full h-10 my-4 pl-2 border-2 border-zinc-300 rounded' 
+                                 className={errors.email ? 'w-full h-10 mt-3 pl-2 border-2 border-red-400 text-red-400 rounded' : 'w-full h-10 mt-3 pl-2 border-2 border-zinc-300 text-zinc-400 rounded'} 
                               />
                               <input
                                  name='phone' 
@@ -271,7 +271,7 @@ const Publish = () => {
                                  error={errors.phone && touched.phone}
                                  onChange={handleChange}
                                  placeholder='Telefone' 
-                                 className='w-full h-10 pl-2 border-2 border-zinc-300 rounded' 
+                                 className={errors.phone ? 'w-full h-10 mt-3 pl-2 border-2 border-red-400 text-red-400 rounded' : 'w-full h-10 mt-3 pl-2 border-2 border-zinc-300 text-zinc-400 rounded'} 
                               />
                            </form>
                         </div>
