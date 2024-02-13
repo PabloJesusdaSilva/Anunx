@@ -18,7 +18,7 @@ const Header = () => {
           <li className='text-lg text-white'>Anunx</li>
 
           <li className='flex items-center cursor-pointer'>
-            <Link href='../publish' passHref className='mr-6'>
+            <Link href='../pages/publish' passHref className='mr-6'>
               <button className='py-1 px-4 bg-zinc-900 border-2 rounded-md border-zinc-700 text-white'>
                 Anunciar e Vender
               </button>
@@ -41,10 +41,10 @@ const Header = () => {
             anchorUserMenu 
               ? <nav className='transition-all absolute top-14 right-32 w-54 py-2 px-1 rounded shadow-md bg-zinc-50'>
                   <ul>
-                    <Link href='../dashboard' passHref>
+                    <Link href='../pages/dashboard' passHref>
                       <li className='p-2 transition-all delay-300 hover:bg-slate-100'>Meus anúncios</li>
                     </Link>
-                    <Link href='../publish' passHref>
+                    <Link href='../pages/publish' passHref>
                       <li className='my-2 p-2 transition-all delay-300 hover:bg-slate-100'>Publicar novo anúncio</li>
                     </Link>
                     <hr />

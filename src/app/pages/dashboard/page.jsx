@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import Card from '@/components/Card';
-import localImage from '../../../public/bike.jpg';
+import localImage from '../../images/bike.jpg';
 
 const Dashboard = () => {
    return(
