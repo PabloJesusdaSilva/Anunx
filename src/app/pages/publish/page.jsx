@@ -95,8 +95,8 @@ const Publish = () => {
                         </div>
                         
                         <div className='w-3/5 p-4 mt-8 rounded-md shadow-md bg-white'>
-                           <label className={errors.description && touched.description ? 'text-xl font-medium text-red-500' : 'text-xl font-medium'}>Descrição</label>
-                           <p className={errors.description && touched.description ? 'text-red-500' : 'tracking-wide'}>Escreva os detalhes do que está vendendo</p>
+                           <label className={errors.description && touched.description ? 'text-xl font-medium text-red-500' : 'text-xl text-zinc-600 font-medium'}>Descrição</label>
+                           <p className={errors.description && touched.description ? 'tracking-wide text-red-500' : 'tracking-wide text-zinc-600'}>Escreva os detalhes do que está vendendo</p>
                
                            <textarea 
                               name='description'
@@ -104,7 +104,7 @@ const Publish = () => {
                               onChange={handleChange}
                               cols='30' 
                               rows='10' 
-                              className='w-full h-full mt-3 pt-1 pl-2 border-2 border-zinc-300 rounded resize-none'
+                              className={errors.description && touched.description ? 'w-full h-full mt-3 pt-1 pl-2 border-2 border-red-400 rounded resize-none' : 'w-full h-full mt-3 pt-1 pl-2 border-2 border-zinc-300 rounded resize-none'}
                            />
                         </div>
                         
@@ -119,15 +119,15 @@ const Publish = () => {
                               Preço
                            </label>
 
-                           <label className='relative top-7 -left-11 p-1 text-sm font-medium bg-white text-zinc-400'>Valor</label>
+                           <label className={errors.price && touched.price ? 'relative top-7 -left-11 p-1 text-sm font-medium bg-white text-red-500' : 'relative top-7 -left-11 p-1 text-sm font-medium bg-white text-zinc-400'}>Valor</label>
                            <input 
                               name='price'
                               error={errors.price && touched.price}
                               onChange={handleChange}
                               type='tel' 
-                              className='w-full h-12 mt-4 pl-9 border-2 border-zinc-300 rounded' 
+                              className={errors.price && touched.price ? 'w-full h-12 mt-4 pl-9 border-2 border-red-400 text-red-500 rounded' : 'w-full h-12 mt-4 pl-9 border-2 border-zinc-300 text-zinc-600 rounded'} 
                            />
-                           <span className='relative -top-9 left-3 text-zinc-400'>R$</span>
+                           <span className={errors.price && touched.price ? 'relative -top-9 left-3 text-red-500' : 'relative -top-9 left-3 text-zinc-400'}>R$</span>
                         </div>
                
                         <div className='w-3/5 gap-2 p-4 mt-8 rounded-md shadow-md bg-white'>
@@ -139,7 +139,7 @@ const Publish = () => {
                                  error={errors.name && touched.name}
                                  onChange={handleChange}
                                  placeholder='Nome' 
-                                 className='w-full h-10 mt-3 pl-2 border-2 border-zinc-300 rounded' 
+                                 className={errors.name && touched.name ? 'w-full h-10 mt-3 pl-2 rounded border-2 border-red-400 text-red-500' : 'w-full h-10 mt-3 pl-2 text-zinc-600 border-2 border-zinc-300 rounded'} 
                               />
                               <input 
                                  name='email'
@@ -147,7 +147,7 @@ const Publish = () => {
                                  error={errors.email && touched.email}
                                  onChange={handleChange}
                                  placeholder='Email' 
-                                 className='w-full h-10 my-4 pl-2 border-2 border-zinc-300 rounded' 
+                                 className={errors.email && touched.email ? 'w-full h-10 my-4 pl-2 rounded border-2 border-red-400 text-red-500' : 'w-full h-10 my-4 pl-2 text-zinc-600 border-2 border-zinc-300 rounded'} 
                               />
                               <input
                                  name='phone' 
@@ -155,7 +155,7 @@ const Publish = () => {
                                  error={errors.phone && touched.phone}
                                  onChange={handleChange}
                                  placeholder='Telefone' 
-                                 className='w-full h-10 pl-2 border-2 border-zinc-300 rounded' 
+                                 className={errors.phone && touched.phone ? 'w-full h-10 pl-2 rounded border-2 border-red-400 text-red-500' : 'w-full h-10 pl-2 text-zinc-600 border-2 border-zinc-300 rounded'} 
                               />
                            </form>
                         </div>
