@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { Formik } from  'formik';
 
 import { initialValues, validationSchema } from './formVaues';
