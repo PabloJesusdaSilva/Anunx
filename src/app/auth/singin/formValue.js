@@ -9,17 +9,20 @@ const initialValues = {
 
 const validationSchema = yup.object().shape({
   name: yup.string()
-    .required(),
+    .required('Required field!'),
   
   email: yup.string()
-    .email()
-    .required(),
+    .email('Email invalid')
+    .required('Required field!'),
 
   password: yup.mixed()
-    .required(),
+    .min(6, 'Short password')
+    .required('Required field!'),
 
   confirmPassword: yup.mixed()
-    .required()
+    .oneOf([yup.ref('password'), null], 'Different password')
+    .required('Required field!')
+    
 })
 
 export {
